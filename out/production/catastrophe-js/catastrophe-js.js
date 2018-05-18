@@ -17,6 +17,9 @@
   var Unit = Kotlin.kotlin.Unit;
   var appendElement = Kotlin.kotlin.dom.appendElement_ldvnw0$;
   var Kind_OBJECT = Kotlin.Kind.OBJECT;
+  var Pair = Kotlin.kotlin.Pair;
+  var Kind_CLASS = Kotlin.Kind.CLASS;
+  var kotlin_js_internal_StringCompanionObject = Kotlin.kotlin.js.internal.StringCompanionObject;
   function main$lambda(closure$foldResult) {
     return function ($receiver) {
       appendText($receiver, 'Fold = ' + closure$foldResult);
@@ -59,6 +62,12 @@
       return Unit;
     };
   }
+  function main$lambda_6(closure$resultMatrix) {
+    return function ($receiver) {
+      appendText($receiver, 'First Result Matrix value = ' + closure$resultMatrix.value);
+      return Unit;
+    };
+  }
   function main(args) {
     var foldResult = Fold_getInstance().v(1.0, 1.01);
     println('Fold catastrophe V=' + foldResult);
@@ -74,6 +83,11 @@
     println('Elliptic catastrophe V=' + ellipticResult);
     var parabolicResult = Parabolic_getInstance().v(1.0, 1.0, 1.0, 1.0, 1.01, 1.0);
     println('Parabolic catastrophe V=' + parabolicResult);
+    var resultMatrix = testMatrix.createInstance();
+    println('Result matrix value: ' + resultMatrix.value);
+    resultMatrix.value.first[0] = 'Hello';
+    resultMatrix.value.second[0] = 'World!';
+    println('Result matrix value: ' + resultMatrix.value);
     var outputContainer = ensureNotNull(document.getElementById('outputContainer'));
     appendElement(outputContainer, 'p', main$lambda(foldResult));
     appendElement(outputContainer, 'p', main$lambda_0(cuspResult));
@@ -82,6 +96,7 @@
     appendElement(outputContainer, 'p', main$lambda_3(hyperbolicResult));
     appendElement(outputContainer, 'p', main$lambda_4(ellipticResult));
     appendElement(outputContainer, 'p', main$lambda_5(parabolicResult));
+    appendElement(outputContainer, 'p', main$lambda_6(resultMatrix));
   }
   function Butterfly() {
     Butterfly_instance = this;
@@ -156,6 +171,19 @@
     }
     return Swallowtail_instance;
   }
+  function ResultMatrix(t) {
+    this.t_0 = t;
+    this.value = new Pair([], []);
+  }
+  ResultMatrix.prototype.createInstance = function () {
+    return new ResultMatrix(this.t_0);
+  };
+  ResultMatrix.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'ResultMatrix',
+    interfaces: []
+  };
+  var testMatrix;
   function Elliptic() {
     Elliptic_instance = this;
   }
@@ -224,6 +252,13 @@
   Object.defineProperty(package$catastrophe, 'Swallowtail', {
     get: Swallowtail_getInstance
   });
+  var package$model = package$catastrophe.model || (package$catastrophe.model = {});
+  package$model.ResultMatrix = ResultMatrix;
+  Object.defineProperty(package$model, 'testMatrix', {
+    get: function () {
+      return testMatrix;
+    }
+  });
   var package$umbilic = package$catastrophe.umbilic || (package$catastrophe.umbilic = {});
   Object.defineProperty(package$umbilic, 'Elliptic', {
     get: Elliptic_getInstance
@@ -234,6 +269,7 @@
   Object.defineProperty(package$umbilic, 'Parabolic', {
     get: Parabolic_getInstance
   });
+  testMatrix = new ResultMatrix(typeof kotlin_js_internal_StringCompanionObject);
   main([]);
   Kotlin.defineModule('catastrophe-js', _);
   return _;
