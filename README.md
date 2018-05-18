@@ -31,3 +31,7 @@ in `Kotlin-JS`.
   *  Distribute using UMD format
   
   *  Create interesting cataastrophe models and include them as samples in the repo
+  
+  * Add equations and models from:
+  
+      * https://www.math.wisc.edu/~robbin/catastrophe/catastrophe_talk.pdf
