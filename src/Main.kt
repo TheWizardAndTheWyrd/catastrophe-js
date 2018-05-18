@@ -1,4 +1,5 @@
 import kotlin.dom.*
+import kotlin.math.pow
 
 import catastrophe.*
 import catastrophe.model.testMatrix
@@ -52,4 +53,13 @@ fun main(args: Array<String>) {
 
     // Let's do some real work with a Cusp Catastrophe.  Cf. https://en.wikipedia.org/wiki/Catastrophe_theory#/media/File:Cusp_catastrophe.svg
 
+    // Let's do a high stress dog test
+    // a < 0
+    val stressBaseX: Double = 0.02
+    val stressBaseA: Double = -6 * stressBaseX.pow(2)
+    val stressBaseB: Double = -8 * stressBaseX.pow(3)
+
+    val stressResult0 = Cusp.v(stressBaseA, stressBaseB, stressBaseX)
+    println("stressResult0: $stressResult0")
+    outputContainer.appendElement("p", { appendText("Cusp Stress Result 0 = $stressResult0") })
 }

@@ -68,6 +68,13 @@
       return Unit;
     };
   }
+  function main$lambda_7(closure$stressResult0) {
+    return function ($receiver) {
+      appendText($receiver, 'Cusp Stress Result 0 = ' + closure$stressResult0);
+      return Unit;
+    };
+  }
+  var Math_0 = Math;
   function main(args) {
     var foldResult = Fold_getInstance().v(1.0, 1.01);
     println('Fold catastrophe V=' + foldResult);
@@ -97,11 +104,16 @@
     appendElement(outputContainer, 'p', main$lambda_4(ellipticResult));
     appendElement(outputContainer, 'p', main$lambda_5(parabolicResult));
     appendElement(outputContainer, 'p', main$lambda_6(resultMatrix));
+    var stressBaseX = 0.02;
+    var stressBaseA = -6 * Math_0.pow(stressBaseX, 2);
+    var stressBaseB = -8 * Math_0.pow(stressBaseX, 3);
+    var stressResult0 = Cusp_getInstance().v(stressBaseA, stressBaseB, stressBaseX);
+    println('stressResult0: ' + stressResult0);
+    appendElement(outputContainer, 'p', main$lambda_7(stressResult0));
   }
   function Butterfly() {
     Butterfly_instance = this;
   }
-  var Math_0 = Math;
   Butterfly.prototype.v = function (a, b, c, d, x) {
     return Math_0.pow(x, 6) + a * Math_0.pow(x, 4) + b * Math_0.pow(x, 3) + c * Math_0.pow(x, 2) + d * x;
   };
