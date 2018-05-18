@@ -2,6 +2,7 @@ import kotlin.dom.*
 import kotlin.math.pow
 
 import catastrophe.*
+import catastrophe.model.ResultMatrix
 import catastrophe.model.testMatrix
 import catastrophe.umbilic.*
 import kotlin.browser.document
@@ -55,11 +56,37 @@ fun main(args: Array<String>) {
 
     // Let's do a high stress dog test
     // a < 0
-    val stressBaseX: Double = 0.02
-    val stressBaseA: Double = -6 * stressBaseX.pow(2)
-    val stressBaseB: Double = -8 * stressBaseX.pow(3)
+    var stressBaseX: Double = 0.02
+    val stressBaseA: Double = calcA(stressBaseX)
+    val stressBaseB: Double = calcB(stressBaseX)
 
     val stressResult0 = Cusp.v(stressBaseA, stressBaseB, stressBaseX)
     println("stressResult0: $stressResult0")
     outputContainer.appendElement("p", { appendText("Cusp Stress Result 0 = $stressResult0") })
+
+    // Create a ResultMatrix
+    val resultAB = ResultMatrix(0.00)
+    val resultX = arrayOf<Double>()
+
+    for (i in 0 .. 10) {
+        stressBaseX += 0.01
+        val a = calcA(stressBaseX)
+        val b = calcB(stressBaseX)
+
+        val temp = Cusp.v(a, b, stressBaseX)
+
+        resultAB.value.first[i] = a
+        resultAB.value.second[i] = b
+        resultX[i] = temp
+    }
+
+    // Display some results
+    for (i in 0 .. 10) {
+        outputContainer.appendElement("p", { appendText("a=${resultAB.value.first[i]}, b=${resultAB.value.second[i]}, V=${resultX[i]}") })
+        println("a=${resultAB.value.first[i]}, b=${resultAB.value.second[i]}, V=${resultX[i]}")
+    }
 }
+
+private fun calcB(stressBaseX: Double) = -8 * stressBaseX.pow(3)
+
+private fun calcA(stressBaseX: Double) = -6 * stressBaseX.pow(2)

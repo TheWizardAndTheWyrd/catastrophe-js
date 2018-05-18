@@ -74,7 +74,12 @@
       return Unit;
     };
   }
-  var Math_0 = Math;
+  function main$lambda_8(closure$resultAB, closure$i, closure$resultX) {
+    return function ($receiver) {
+      appendText($receiver, 'a=' + closure$resultAB.value.first[closure$i] + ', b=' + closure$resultAB.value.second[closure$i] + ', V=' + closure$resultX[closure$i]);
+      return Unit;
+    };
+  }
   function main(args) {
     var foldResult = Fold_getInstance().v(1.0, 1.01);
     println('Fold catastrophe V=' + foldResult);
@@ -105,11 +110,33 @@
     appendElement(outputContainer, 'p', main$lambda_5(parabolicResult));
     appendElement(outputContainer, 'p', main$lambda_6(resultMatrix));
     var stressBaseX = 0.02;
-    var stressBaseA = -6 * Math_0.pow(stressBaseX, 2);
-    var stressBaseB = -8 * Math_0.pow(stressBaseX, 3);
+    var stressBaseA = calcA(stressBaseX);
+    var stressBaseB = calcB(stressBaseX);
     var stressResult0 = Cusp_getInstance().v(stressBaseA, stressBaseB, stressBaseX);
     println('stressResult0: ' + stressResult0);
     appendElement(outputContainer, 'p', main$lambda_7(stressResult0));
+    var resultAB = new ResultMatrix(0.0);
+    var resultX = [];
+    for (var i = 0; i <= 10; i++) {
+      stressBaseX += 0.01;
+      var a = calcA(stressBaseX);
+      var b = calcB(stressBaseX);
+      var temp = Cusp_getInstance().v(a, b, stressBaseX);
+      resultAB.value.first[i] = a;
+      resultAB.value.second[i] = b;
+      resultX[i] = temp;
+    }
+    for (var i_0 = 0; i_0 <= 10; i_0++) {
+      appendElement(outputContainer, 'p', main$lambda_8(resultAB, i_0, resultX));
+      println('a=' + resultAB.value.first[i_0] + ', b=' + resultAB.value.second[i_0] + ', V=' + resultX[i_0]);
+    }
+  }
+  var Math_0 = Math;
+  function calcB(stressBaseX) {
+    return -8 * Math_0.pow(stressBaseX, 3);
+  }
+  function calcA(stressBaseX) {
+    return -6 * Math_0.pow(stressBaseX, 2);
   }
   function Butterfly() {
     Butterfly_instance = this;
