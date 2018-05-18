@@ -51,4 +51,5 @@ fun main(args: Array<String>) {
     outputContainer.appendElement("p", { appendText("First Result Matrix value = ${resultMatrix.value}") })
 
     // Let's do some real work with a Cusp Catastrophe.  Cf. https://en.wikipedia.org/wiki/Catastrophe_theory#/media/File:Cusp_catastrophe.svg
+
 }

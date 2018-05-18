@@ -14,6 +14,12 @@ Essentially, as an engineer focusing on distributed systems, I want to know if I
 `Catastrophe Theory` to the instrumentation of my systems.  Also, I wanted to write something
 in `Kotlin-JS`.
 
+## Practical Cusp Catastrophe Example
+
+  * https://en.wikipedia.org/wiki/Catastrophe_theory#/media/File:Pitchfork_bifurcation_left.svg
+  
+"A famous suggestion is that the cusp catastrophe can be used to model the behaviour of a stressed dog, which may respond by becoming cowed or becoming angry.[1] The suggestion is that at moderate stress (a > 0), the dog will exhibit a smooth transition of response from cowed to angry, depending on how it is provoked. But higher stress levels correspond to moving to the region (a < 0). Then, if the dog starts cowed, it will remain cowed as it is irritated more and more, until it reaches the 'fold' point, when it will suddenly, discontinuously snap through to angry mode. Once in 'angry' mode, it will remain angry, even if the direct irritation parameter is considerably reduced."
+
 ## TODO:
 
   *  Model a basic catastrophe scenario using the Fold catastrophe:
@@ -35,3 +41,21 @@ in `Kotlin-JS`.
   * Add equations and models from:
   
       * https://www.math.wisc.edu/~robbin/catastrophe/catastrophe_talk.pdf
+      
+  * Model a catastrophe modeled on the Cusp pattern:
+  
+      * V = x^4 + a(x^2) + bx
+      
+      * "The cusp geometry is very common, when one explores what happens to a fold bifurcation if a second parameter, b, is added to the control space. Varying the parameters, one finds that there is now a curve (blue) of points in (a,b) space where stability is lost, where the stable solution will suddenly jump to an alternate outcome."
+  
+      * "But in a cusp geometry the bifurcation curve loops back on itself, giving a second branch where this alternate solution itself loses stability, and will make a jump back to the original solution set. By repeatedly increasing b and then decreasing it, one can therefore observe hysteresis loops, as the system alternately follows one solution, jumps to the other, follows the other back, then jumps back to the first."
+  
+      * "However, this is only possible in the region of parameter space a < 0. As a is increased, the hysteresis loops become smaller and smaller, until above a = 0 they disappear altogether (the cusp catastrophe), and there is only one stable solution."
+      
+      * "The remaining simple catastrophe geometries are very specialised in comparison, and presented here only for curiosity value."
+  
+      * https://content.sciendo.com/view/journals/foli/11/1/article-p61.xml
+      
+  ## Credits
+  
+  All quotes are from Wikipedia.org unless stated otherwise. All content provided at external links are linked here for educational purposes only.
