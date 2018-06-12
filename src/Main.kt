@@ -10,8 +10,27 @@ import kotlin.browser.document
 @JsName("demoValues")
 fun main(args: Array<String>) {
     // Let's calculate some individual catastrophe values:
-    val foldResult = Fold.v(1.00, 1.01)
+//    val foldResult = Fold.v(1.00, 1.01)
+    // Assume we're tracking missed monthly dues payments for a Lode of 3 members over 1, 2, and 3 years.  In that time, one member misses on dues payment.
+//    val foldResult = Fold.v(0.0092592592574074, 1 / 10.00) // a = standard deviation of missing one dues payment in x = 1st year of a decade.
+//    val foldResult = Fold.v(0.065319726467686, 2 / 10.00) // a = standard deviation of missing one dues payment in x = 2nd year of decade.
+    val foldResult = Fold.v(	0.054054054048649, 3 / 10.00) // a = standard deviation of missing one dues payment in x = 3rd year of decade.
     println("Fold catastrophe V=$foldResult")
+    /*
+    The above values for a can be derived from: https://docs.google.com/spreadsheets/d/1FHIyUMMWs_m_XpACUO0NDjuhKYbPCdxNITbg5cxQjr4/edit#gid=0
+    The standard deviations can quickly be calculated here: http://www.calculator.net/standard-deviation-calculator.html
+
+    We can see that although there was only one break in the Circle by way of 1/3 Dues miss for 1/12 months of 1/3 years,
+    the value for V from Fold.v keeps trending past 0.  How can the tide be stemmed?  That likely requires adjusting the
+    parameters used to calculate the value of V.
+
+    In other words, we need to plot out what happens with one miss, and x =+ 0.01 for each month (is this the right
+    expression for x?).
+
+    Here's the lesson: nothing is free (like beer) in the Universe. But, gnosis is free (as in knowledge) to those that
+    Know, Dare, Will, and keep Silence; especially concerning matters of their direct manipulation of Space-Time by way
+    of Magick such that Catastrophes are either evoked or banished at will.
+     */
 
     val cuspResult = Cusp.v(1.00, 1.00, 1.01)
     println("Cusp catastrophe V=$cuspResult")

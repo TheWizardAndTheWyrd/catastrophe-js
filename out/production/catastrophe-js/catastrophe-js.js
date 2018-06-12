@@ -81,7 +81,7 @@
     };
   }
   function main(args) {
-    var foldResult = Fold_getInstance().v(1.0, 1.01);
+    var foldResult = Fold_getInstance().v(0.054054054048649, 3 / 10.0);
     println('Fold catastrophe V=' + foldResult);
     var cuspResult = Cusp_getInstance().v(1.0, 1.0, 1.01);
     println('Cusp catastrophe V=' + cuspResult);
@@ -223,6 +223,22 @@
     interfaces: []
   };
   var testMatrix;
+  function CumulativeStandardDeviation() {
+    this.n_0 = 0;
+    this.sum_0 = 0.0;
+    this.sum2_0 = 0.0;
+  }
+  CumulativeStandardDeviation.prototype.getNextSD_14dthe$ = function (x) {
+    this.n_0 = this.n_0 + 1 | 0;
+    this.sum_0 += x;
+    this.sum2_0 += x * x;
+    return Math.sqrt(this.sum2_0 / this.n_0 - this.sum_0 * this.sum_0 / this.n_0 / this.n_0);
+  };
+  CumulativeStandardDeviation.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'CumulativeStandardDeviation',
+    interfaces: []
+  };
   function Elliptic() {
     Elliptic_instance = this;
   }
@@ -298,6 +314,8 @@
       return testMatrix;
     }
   });
+  var package$statistics = package$catastrophe.statistics || (package$catastrophe.statistics = {});
+  package$statistics.CumulativeStandardDeviation = CumulativeStandardDeviation;
   var package$umbilic = package$catastrophe.umbilic || (package$catastrophe.umbilic = {});
   Object.defineProperty(package$umbilic, 'Elliptic', {
     get: Elliptic_getInstance
