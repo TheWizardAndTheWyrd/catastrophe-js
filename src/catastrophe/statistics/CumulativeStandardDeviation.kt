@@ -8,7 +8,7 @@ class CumulativeStandardDeviation {
     private var sum = 0.0
     private var sum2 = 0.0
 
-    fun getNextSD(x: Double): Double {
+    fun getNextSigma(x: Double): Double {
         n++
         sum += x
         sum2 += x * x

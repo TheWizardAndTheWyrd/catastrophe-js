@@ -16,6 +16,7 @@
   var appendText = Kotlin.kotlin.dom.appendText_46n0ku$;
   var Unit = Kotlin.kotlin.Unit;
   var appendElement = Kotlin.kotlin.dom.appendElement_ldvnw0$;
+  var getCallableRef = Kotlin.getCallableRef;
   var Kind_OBJECT = Kotlin.Kind.OBJECT;
   var Pair = Kotlin.kotlin.Pair;
   var Kind_CLASS = Kotlin.Kind.CLASS;
@@ -80,6 +81,18 @@
       return Unit;
     };
   }
+  function main$lambda_9(closure$resultSigma6d3) {
+    return function ($receiver) {
+      appendText($receiver, 'Sigma for 6d3 = ' + closure$resultSigma6d3);
+      return Unit;
+    };
+  }
+  function main$lambda_10(closure$resultSigma3d6) {
+    return function ($receiver) {
+      appendText($receiver, 'Sigma for 3d6 = ' + closure$resultSigma3d6);
+      return Unit;
+    };
+  }
   function main(args) {
     var foldResult = Fold_getInstance().v(0.054054054048649, 3 / 10.0);
     println('Fold catastrophe V=' + foldResult);
@@ -130,6 +143,28 @@
       appendElement(outputContainer, 'p', main$lambda_8(resultAB, i_0, resultX));
       println('a=' + resultAB.value.first[i_0] + ', b=' + resultAB.value.second[i_0] + ', V=' + resultX[i_0]);
     }
+    var resultSigma6d3 = (new XdYStandardDeviation()).getSigma_lu1900$(6.0, 3.0);
+    println('resultSigma6d3: ' + resultSigma6d3);
+    appendElement(outputContainer, 'p', main$lambda_9(resultSigma6d3));
+    var resultSigma3d6 = (new XdYStandardDeviation()).getSigma_lu1900$(3.0, 6.0);
+    println('resultSigma3d6: ' + resultSigma3d6);
+    appendElement(outputContainer, 'p', main$lambda_10(resultSigma3d6));
+    var commonSigmasForXdY = new XdYStandardDeviation();
+    println('commonSigmasForXdY: ' + commonSigmasForXdY);
+    println('Calculating useful and interesting standard deviations for XdY...');
+    commonSigmasForXdY.populateStandardDeviations();
+    println(getCallableRef('populateStandardDeviations', function ($receiver) {
+      return $receiver.populateStandardDeviations(), Unit;
+    }.bind(null, commonSigmasForXdY)).toString() + ' is complete.');
+    commonSigmasForXdY.printCommonDicePoolStandardDeviations();
+    var commonMeansForXdY = new XdYStandardDeviation();
+    println('commonMeansForXdY: ' + commonMeansForXdY);
+    println('Calculating useful and interesting standard average rolls for XdY...');
+    commonMeansForXdY.populateStandardMeans();
+    println(getCallableRef('populateStandardMeans', function ($receiver) {
+      return $receiver.populateStandardMeans(), Unit;
+    }.bind(null, commonMeansForXdY)).toString() + ' is complete.');
+    commonMeansForXdY.printCommonDicePoolStandardMeans();
   }
   var Math_0 = Math;
   function calcB(stressBaseX) {
@@ -228,7 +263,7 @@
     this.sum_0 = 0.0;
     this.sum2_0 = 0.0;
   }
-  CumulativeStandardDeviation.prototype.getNextSD_14dthe$ = function (x) {
+  CumulativeStandardDeviation.prototype.getNextSigma_14dthe$ = function (x) {
     this.n_0 = this.n_0 + 1 | 0;
     this.sum_0 += x;
     this.sum2_0 += x * x;
@@ -237,6 +272,66 @@
   CumulativeStandardDeviation.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CumulativeStandardDeviation',
+    interfaces: []
+  };
+  var LinkedHashMap_init = Kotlin.kotlin.collections.LinkedHashMap_init_q3lmfv$;
+  function XdYStandardDeviation() {
+    this.commonDicePoolStandardDeviations_0 = LinkedHashMap_init();
+    this.commonDicePoolStandardMeans_0 = LinkedHashMap_init();
+  }
+  XdYStandardDeviation.prototype.getSigma_lu1900$ = function (x, y) {
+    return Math.sqrt(x * (Math.pow(y, 2.0) - 1) / 12);
+  };
+  XdYStandardDeviation.prototype.populateStandardDeviations = function () {
+    var $receiver = this.commonDicePoolStandardDeviations_0;
+    var value = this.getSigma_lu1900$(1.0, 6.0);
+    $receiver.put_xwzc9p$('1d6', value);
+    var $receiver_0 = this.commonDicePoolStandardDeviations_0;
+    var value_0 = this.getSigma_lu1900$(2.0, 6.0);
+    $receiver_0.put_xwzc9p$('2d6', value_0);
+    var $receiver_1 = this.commonDicePoolStandardDeviations_0;
+    var value_1 = this.getSigma_lu1900$(3.0, 6.0);
+    $receiver_1.put_xwzc9p$('3d6', value_1);
+    var $receiver_2 = this.commonDicePoolStandardDeviations_0;
+    var value_2 = this.getSigma_lu1900$(4.0, 6.0);
+    $receiver_2.put_xwzc9p$('4d6', value_2);
+  };
+  XdYStandardDeviation.prototype.printCommonDicePoolStandardDeviations = function () {
+    var tmp$;
+    tmp$ = this.commonDicePoolStandardDeviations_0.entries.iterator();
+    while (tmp$.hasNext()) {
+      var element = tmp$.next();
+      println(element.key + ' has a standard deviation of: ' + element.value);
+    }
+  };
+  XdYStandardDeviation.prototype.getMean_lu1900$ = function (x, y) {
+    return x * (y + 1) / 2;
+  };
+  XdYStandardDeviation.prototype.populateStandardMeans = function () {
+    var $receiver = this.commonDicePoolStandardMeans_0;
+    var value = this.getMean_lu1900$(1.0, 6.0);
+    $receiver.put_xwzc9p$('1d6', value);
+    var $receiver_0 = this.commonDicePoolStandardMeans_0;
+    var value_0 = this.getMean_lu1900$(2.0, 6.0);
+    $receiver_0.put_xwzc9p$('2d6', value_0);
+    var $receiver_1 = this.commonDicePoolStandardMeans_0;
+    var value_1 = this.getMean_lu1900$(3.0, 6.0);
+    $receiver_1.put_xwzc9p$('3d6', value_1);
+    var $receiver_2 = this.commonDicePoolStandardMeans_0;
+    var value_2 = this.getMean_lu1900$(4.0, 6.0);
+    $receiver_2.put_xwzc9p$('4d6', value_2);
+  };
+  XdYStandardDeviation.prototype.printCommonDicePoolStandardMeans = function () {
+    var tmp$;
+    tmp$ = this.commonDicePoolStandardMeans_0.entries.iterator();
+    while (tmp$.hasNext()) {
+      var element = tmp$.next();
+      println(element.key + ' has an average roll of: ' + element.value);
+    }
+  };
+  XdYStandardDeviation.$metadata$ = {
+    kind: Kind_CLASS,
+    simpleName: 'XdYStandardDeviation',
     interfaces: []
   };
   function Elliptic() {
@@ -316,6 +411,7 @@
   });
   var package$statistics = package$catastrophe.statistics || (package$catastrophe.statistics = {});
   package$statistics.CumulativeStandardDeviation = CumulativeStandardDeviation;
+  package$statistics.XdYStandardDeviation = XdYStandardDeviation;
   var package$umbilic = package$catastrophe.umbilic || (package$catastrophe.umbilic = {});
   Object.defineProperty(package$umbilic, 'Elliptic', {
     get: Elliptic_getInstance

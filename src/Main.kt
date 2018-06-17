@@ -4,6 +4,7 @@ import kotlin.math.pow
 import catastrophe.*
 import catastrophe.model.ResultMatrix
 import catastrophe.model.testMatrix
+import catastrophe.statistics.XdYStandardDeviation
 import catastrophe.umbilic.*
 import kotlin.browser.document
 
@@ -104,6 +105,35 @@ fun main(args: Array<String>) {
         outputContainer.appendElement("p", { appendText("a=${resultAB.value.first[i]}, b=${resultAB.value.second[i]}, V=${resultX[i]}") })
         println("a=${resultAB.value.first[i]}, b=${resultAB.value.second[i]}, V=${resultX[i]}")
     }
+
+    val resultSigma6d3 = XdYStandardDeviation().getSigma(6.00, 3.00)
+    println("resultSigma6d3: $resultSigma6d3")
+    outputContainer.appendElement("p", { appendText("Sigma for 6d3 = $resultSigma6d3") })
+
+    val resultSigma3d6 = XdYStandardDeviation().getSigma(3.00, 6.00)
+    println("resultSigma3d6: $resultSigma3d6")
+    outputContainer.appendElement("p", { appendText("Sigma for 3d6 = $resultSigma3d6") })
+
+    // Populate some common standard deviations:
+    val commonSigmasForXdY = XdYStandardDeviation()
+    println("commonSigmasForXdY: $commonSigmasForXdY")
+
+    println("Calculating useful and interesting standard deviations for XdY...")
+    commonSigmasForXdY.populateStandardDeviations()
+    println("${commonSigmasForXdY::populateStandardDeviations} is complete.")
+
+    commonSigmasForXdY.printCommonDicePoolStandardDeviations()
+
+    // Populate some common standard means:
+    val commonMeansForXdY = XdYStandardDeviation()
+    println("commonMeansForXdY: $commonMeansForXdY")
+
+    println("Calculating useful and interesting standard average rolls for XdY...")
+    commonMeansForXdY.populateStandardMeans()
+    println("${commonMeansForXdY::populateStandardMeans} is complete.")
+
+    commonMeansForXdY.printCommonDicePoolStandardMeans()
+
 }
 
 private fun calcB(stressBaseX: Double) = -8 * stressBaseX.pow(3)
