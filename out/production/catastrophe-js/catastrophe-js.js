@@ -295,6 +295,18 @@
     var $receiver_2 = this.commonDicePoolStandardDeviations_0;
     var value_2 = this.getSigma_lu1900$(4.0, 6.0);
     $receiver_2.put_xwzc9p$('4d6', value_2);
+    var $receiver_3 = this.commonDicePoolStandardDeviations_0;
+    var value_3 = this.getSigma_lu1900$(5.0, 6.0);
+    $receiver_3.put_xwzc9p$('5d6', value_3);
+    var $receiver_4 = this.commonDicePoolStandardDeviations_0;
+    var value_4 = this.getSigma_lu1900$(6.0, 6.0);
+    $receiver_4.put_xwzc9p$('6d6', value_4);
+    var $receiver_5 = this.commonDicePoolStandardDeviations_0;
+    var value_5 = this.getSigma_lu1900$(7.0, 6.0);
+    $receiver_5.put_xwzc9p$('7d6', value_5);
+    var $receiver_6 = this.commonDicePoolStandardDeviations_0;
+    var value_6 = this.getSigma_lu1900$(8.0, 6.0);
+    $receiver_6.put_xwzc9p$('8d6', value_6);
   };
   XdYStandardDeviation.prototype.printCommonDicePoolStandardDeviations = function () {
     var tmp$;
@@ -305,7 +317,7 @@
     }
   };
   XdYStandardDeviation.prototype.getMean_lu1900$ = function (x, y) {
-    return x * (y + 1) / 2;
+    return Math.floor(x * (y + 1) / 2);
   };
   XdYStandardDeviation.prototype.populateStandardMeans = function () {
     var $receiver = this.commonDicePoolStandardMeans_0;
@@ -320,6 +332,18 @@
     var $receiver_2 = this.commonDicePoolStandardMeans_0;
     var value_2 = this.getMean_lu1900$(4.0, 6.0);
     $receiver_2.put_xwzc9p$('4d6', value_2);
+    var $receiver_3 = this.commonDicePoolStandardMeans_0;
+    var value_3 = this.getMean_lu1900$(4.0, 6.0);
+    $receiver_3.put_xwzc9p$('5d6', value_3);
+    var $receiver_4 = this.commonDicePoolStandardMeans_0;
+    var value_4 = this.getMean_lu1900$(4.0, 6.0);
+    $receiver_4.put_xwzc9p$('6d6', value_4);
+    var $receiver_5 = this.commonDicePoolStandardMeans_0;
+    var value_5 = this.getMean_lu1900$(4.0, 6.0);
+    $receiver_5.put_xwzc9p$('7d6', value_5);
+    var $receiver_6 = this.commonDicePoolStandardMeans_0;
+    var value_6 = this.getMean_lu1900$(4.0, 6.0);
+    $receiver_6.put_xwzc9p$('8d6', value_6);
   };
   XdYStandardDeviation.prototype.printCommonDicePoolStandardMeans = function () {
     var tmp$;
