@@ -134,6 +134,13 @@ fun main(args: Array<String>) {
 
     commonMeansForXdY.printCommonDicePoolStandardMeans()
 
+    val commonSigmaValuesForXdY = XdYStandardDeviation()
+    println("Calculating common sigma values for XdY dice...")
+    commonSigmaValuesForXdY.populateStandardDeviations()
+    commonSigmaValuesForXdY.populateStandardMeans()
+    commonSigmaValuesForXdY.populateCommonDicePoolDeviations()
+    commonSigmaValuesForXdY.printCommonDicePoolDeviations()
+
 }
 
 private fun calcB(stressBaseX: Double) = -8 * stressBaseX.pow(3)

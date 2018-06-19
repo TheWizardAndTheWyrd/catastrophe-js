@@ -16,6 +16,8 @@ class XdYStandardDeviation {
     private val commonDicePoolStandardDeviations: MutableMap<String, Double> = mutableMapOf()
     private val commonDicePoolStandardMeans: MutableMap<String, Int> = mutableMapOf()
 
+    private val commonDicePoolDeviations: MutableMap<String, MutableMap<String, Double>> = mutableMapOf()
+
     // TODO: get Sigma for 6d3, 3d6, 1d20, 3d20, etc.
     fun getSigma(x: Double, y: Double): Double {
 
@@ -94,6 +96,68 @@ class XdYStandardDeviation {
     fun printCommonDicePoolStandardMeans() {
         commonDicePoolStandardMeans.forEach {
             x -> println("${x.key} has an average roll of: ${x.value}")
+        }
+    }
+
+    fun populateCommonDicePoolDeviations() {
+
+        // TODO: move strings to constants
+
+        // 1d6
+        commonDicePoolDeviations["1d6"] = mutableMapOf(
+                "s1" to ((commonDicePoolStandardDeviations["1d6"]!! * 1) + commonDicePoolStandardMeans["1d6"]!!),
+                "s2" to ((commonDicePoolStandardDeviations["1d6"]!! * 2) + commonDicePoolStandardMeans["1d6"]!!),
+                "s3" to ((commonDicePoolStandardDeviations["1d6"]!! * 3) + commonDicePoolStandardMeans["1d6"]!!))
+
+        // 2d6
+        commonDicePoolDeviations["2d6"] = mutableMapOf(
+                "s1" to ((commonDicePoolStandardDeviations["2d6"]!! * 1) + commonDicePoolStandardMeans["2d6"]!!),
+                "s2" to ((commonDicePoolStandardDeviations["2d6"]!! * 2) + commonDicePoolStandardMeans["2d6"]!!),
+                "s3" to ((commonDicePoolStandardDeviations["2d6"]!! * 3) + commonDicePoolStandardMeans["2d6"]!!))
+        // 3d6
+        commonDicePoolDeviations["3d6"] = mutableMapOf(
+                "s1" to ((commonDicePoolStandardDeviations["3d6"]!! * 1) + commonDicePoolStandardMeans["3d6"]!!),
+                "s2" to ((commonDicePoolStandardDeviations["3d6"]!! * 2) + commonDicePoolStandardMeans["3d6"]!!),
+                "s3" to ((commonDicePoolStandardDeviations["3d6"]!! * 3) + commonDicePoolStandardMeans["3d6"]!!))
+        // 4d6
+        commonDicePoolDeviations["4d6"] = mutableMapOf(
+                "s1" to ((commonDicePoolStandardDeviations["4d6"]!! * 1) + commonDicePoolStandardMeans["4d6"]!!),
+                "s2" to ((commonDicePoolStandardDeviations["4d6"]!! * 2) + commonDicePoolStandardMeans["4d6"]!!),
+                "s3" to ((commonDicePoolStandardDeviations["4d6"]!! * 3) + commonDicePoolStandardMeans["4d6"]!!))
+        // 5d6
+        commonDicePoolDeviations["5d6"] = mutableMapOf(
+                "s1" to ((commonDicePoolStandardDeviations["5d6"]!! * 1) + commonDicePoolStandardMeans["5d6"]!!),
+                "s2" to ((commonDicePoolStandardDeviations["5d6"]!! * 2) + commonDicePoolStandardMeans["5d6"]!!),
+                "s3" to ((commonDicePoolStandardDeviations["5d6"]!! * 3) + commonDicePoolStandardMeans["5d6"]!!))
+        // 6d6
+        commonDicePoolDeviations["6d6"] = mutableMapOf(
+                "s1" to ((commonDicePoolStandardDeviations["6d6"]!! * 1) + commonDicePoolStandardMeans["6d6"]!!),
+                "s2" to ((commonDicePoolStandardDeviations["6d6"]!! * 2) + commonDicePoolStandardMeans["6d6"]!!),
+                "s3" to ((commonDicePoolStandardDeviations["6d6"]!! * 3) + commonDicePoolStandardMeans["6d6"]!!))
+        // 7d6
+        commonDicePoolDeviations["7d6"] = mutableMapOf(
+                "s1" to ((commonDicePoolStandardDeviations["7d6"]!! * 1) + commonDicePoolStandardMeans["7d6"]!!),
+                "s2" to ((commonDicePoolStandardDeviations["7d6"]!! * 2) + commonDicePoolStandardMeans["7d6"]!!),
+                "s3" to ((commonDicePoolStandardDeviations["7d6"]!! * 3) + commonDicePoolStandardMeans["7d6"]!!))
+        // 8d6
+        commonDicePoolDeviations["8d6"] = mutableMapOf(
+                "s1" to ((commonDicePoolStandardDeviations["8d6"]!! * 1) + commonDicePoolStandardMeans["8d6"]!!),
+                "s2" to ((commonDicePoolStandardDeviations["8d6"]!! * 2) + commonDicePoolStandardMeans["8d6"]!!),
+                "s3" to ((commonDicePoolStandardDeviations["8d6"]!! * 3) + commonDicePoolStandardMeans["8d6"]!!))
+    }
+
+    fun printCommonDicePoolDeviations() {
+
+        try {
+            for (p in commonDicePoolDeviations) {
+                println("Dice: ${p.key} with a standard deviation of: ${commonDicePoolStandardDeviations[p.key]} and a mean roll of: ${commonDicePoolStandardMeans[p.key]} has the following sigma values:")
+
+                for (v in p.value) {
+                    println("${p.key} deviation: ${v.key} = ${v.value}")
+                }
+            }
+        } catch (e: Exception) {
+            println("Unable to print commonDicePoolDeviations: ${e.message} caused by: ${e.cause}")
         }
     }
 }

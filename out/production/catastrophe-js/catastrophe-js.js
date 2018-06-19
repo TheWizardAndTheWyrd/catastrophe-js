@@ -21,6 +21,10 @@
   var Pair = Kotlin.kotlin.Pair;
   var Kind_CLASS = Kotlin.Kind.CLASS;
   var kotlin_js_internal_StringCompanionObject = Kotlin.kotlin.js.internal.StringCompanionObject;
+  var to = Kotlin.kotlin.to_ujzrz7$;
+  var mutableMapOf = Kotlin.kotlin.collections.mutableMapOf_qfcya0$;
+  var toString = Kotlin.toString;
+  var Exception = Kotlin.kotlin.Exception;
   function main$lambda(closure$foldResult) {
     return function ($receiver) {
       appendText($receiver, 'Fold = ' + closure$foldResult);
@@ -165,6 +169,12 @@
       return $receiver.populateStandardMeans(), Unit;
     }.bind(null, commonMeansForXdY)).toString() + ' is complete.');
     commonMeansForXdY.printCommonDicePoolStandardMeans();
+    var commonSigmaValuesForXdY = new XdYStandardDeviation();
+    println('Calculating common sigma values for XdY dice...');
+    commonSigmaValuesForXdY.populateStandardDeviations();
+    commonSigmaValuesForXdY.populateStandardMeans();
+    commonSigmaValuesForXdY.populateCommonDicePoolDeviations();
+    commonSigmaValuesForXdY.printCommonDicePoolDeviations();
   }
   var Math_0 = Math;
   function calcB(stressBaseX) {
@@ -278,6 +288,7 @@
   function XdYStandardDeviation() {
     this.commonDicePoolStandardDeviations_0 = LinkedHashMap_init();
     this.commonDicePoolStandardMeans_0 = LinkedHashMap_init();
+    this.commonDicePoolDeviations_0 = LinkedHashMap_init();
   }
   XdYStandardDeviation.prototype.getSigma_lu1900$ = function (x, y) {
     return Math.sqrt(x * (Math.pow(y, 2.0) - 1) / 12);
@@ -351,6 +362,54 @@
     while (tmp$.hasNext()) {
       var element = tmp$.next();
       println(element.key + ' has an average roll of: ' + element.value);
+    }
+  };
+  XdYStandardDeviation.prototype.populateCommonDicePoolDeviations = function () {
+    var $receiver = this.commonDicePoolDeviations_0;
+    var value = mutableMapOf([to('s1', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('1d6')) * 1 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('1d6'))), to('s2', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('1d6')) * 2 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('1d6'))), to('s3', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('1d6')) * 3 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('1d6')))]);
+    $receiver.put_xwzc9p$('1d6', value);
+    var $receiver_0 = this.commonDicePoolDeviations_0;
+    var value_0 = mutableMapOf([to('s1', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('2d6')) * 1 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('2d6'))), to('s2', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('2d6')) * 2 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('2d6'))), to('s3', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('2d6')) * 3 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('2d6')))]);
+    $receiver_0.put_xwzc9p$('2d6', value_0);
+    var $receiver_1 = this.commonDicePoolDeviations_0;
+    var value_1 = mutableMapOf([to('s1', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('3d6')) * 1 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('3d6'))), to('s2', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('3d6')) * 2 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('3d6'))), to('s3', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('3d6')) * 3 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('3d6')))]);
+    $receiver_1.put_xwzc9p$('3d6', value_1);
+    var $receiver_2 = this.commonDicePoolDeviations_0;
+    var value_2 = mutableMapOf([to('s1', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('4d6')) * 1 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('4d6'))), to('s2', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('4d6')) * 2 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('4d6'))), to('s3', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('4d6')) * 3 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('4d6')))]);
+    $receiver_2.put_xwzc9p$('4d6', value_2);
+    var $receiver_3 = this.commonDicePoolDeviations_0;
+    var value_3 = mutableMapOf([to('s1', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('5d6')) * 1 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('5d6'))), to('s2', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('5d6')) * 2 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('5d6'))), to('s3', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('5d6')) * 3 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('5d6')))]);
+    $receiver_3.put_xwzc9p$('5d6', value_3);
+    var $receiver_4 = this.commonDicePoolDeviations_0;
+    var value_4 = mutableMapOf([to('s1', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('6d6')) * 1 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('6d6'))), to('s2', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('6d6')) * 2 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('6d6'))), to('s3', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('6d6')) * 3 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('6d6')))]);
+    $receiver_4.put_xwzc9p$('6d6', value_4);
+    var $receiver_5 = this.commonDicePoolDeviations_0;
+    var value_5 = mutableMapOf([to('s1', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('7d6')) * 1 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('7d6'))), to('s2', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('7d6')) * 2 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('7d6'))), to('s3', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('7d6')) * 3 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('7d6')))]);
+    $receiver_5.put_xwzc9p$('7d6', value_5);
+    var $receiver_6 = this.commonDicePoolDeviations_0;
+    var value_6 = mutableMapOf([to('s1', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('8d6')) * 1 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('8d6'))), to('s2', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('8d6')) * 2 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('8d6'))), to('s3', ensureNotNull(this.commonDicePoolStandardDeviations_0.get_11rb$('8d6')) * 3 + ensureNotNull(this.commonDicePoolStandardMeans_0.get_11rb$('8d6')))]);
+    $receiver_6.put_xwzc9p$('8d6', value_6);
+  };
+  XdYStandardDeviation.prototype.printCommonDicePoolDeviations = function () {
+    var tmp$, tmp$_0;
+    try {
+      tmp$ = this.commonDicePoolDeviations_0.entries.iterator();
+      while (tmp$.hasNext()) {
+        var p = tmp$.next();
+        println('Dice: ' + p.key + ' with a standard deviation of: ' + toString(this.commonDicePoolStandardDeviations_0.get_11rb$(p.key)) + ' and a mean roll of: ' + toString(this.commonDicePoolStandardMeans_0.get_11rb$(p.key)) + ' has the following sigma values:');
+        tmp$_0 = p.value.entries.iterator();
+        while (tmp$_0.hasNext()) {
+          var v = tmp$_0.next();
+          println(p.key + ' deviation: ' + v.key + ' = ' + v.value);
+        }
+      }
+    }
+     catch (e) {
+      if (Kotlin.isType(e, Exception)) {
+        println('Unable to print commonDicePoolDeviations: ' + toString(e.message) + ' caused by: ' + toString(e.cause));
+      }
+       else
+        throw e;
     }
   };
   XdYStandardDeviation.$metadata$ = {
